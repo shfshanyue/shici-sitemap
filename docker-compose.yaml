@@ -1,0 +1,14 @@
+version: "3"
+services:
+  shici-sitemap:
+    build: .
+    restart: always
+    labels:
+      - traefik.http.routers.shici-sitemap.rule=Host(`shici.xiange.tech`) && PathPrefix(`/sitemap`)
+      - traefik.http.routers.shici-sitemap.tls=true
+      - traefik.http.routers.shici-sitemap.tls.certresolver=le
+
+networks:
+  default:
+    external:
+      name: traefik_default
